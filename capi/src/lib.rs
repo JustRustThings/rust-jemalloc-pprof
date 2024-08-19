@@ -62,7 +62,7 @@ fn dump_pprof_inner() -> Result<Vec<u8>, Error> {
     }
 
     let dump_reader = BufReader::new(f);
-    let profile = parse_jeheap(dump_reader, MAPPINGS.as_deref())?;
+    let profile = parse_jeheap(dump_reader, Some(MAPPINGS.as_deref()))?;
     let pprof = profile.to_pprof(("inuse_space", "bytes"), ("space", "bytes"), None);
     Ok(pprof)
 }
